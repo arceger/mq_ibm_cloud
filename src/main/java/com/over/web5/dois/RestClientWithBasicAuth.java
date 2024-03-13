@@ -10,7 +10,7 @@ public class RestClientWithBasicAuth {
 
     public static void main(String[] args) {
         String username = "usertest";
-        String password = "lk_zh-kRVKaxOnVnyODcznUteJXt6xwmB2_kUv2qYO-z";
+        String password = "";
 
         String message = "Mensagem de teste";
 
