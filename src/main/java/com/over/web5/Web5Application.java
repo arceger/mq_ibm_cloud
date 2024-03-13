@@ -30,13 +30,13 @@ public class Web5Application {
 			LOGGER.info("Erro mq "+e);
 		}
 
-		RestTemplate restTemplate = new RestTemplate();
-
-		restTemplate.getInterceptors().add(new RestTemplateFilter());
-
-		String url = "http://localhost:8080/hello";
-		String response = restTemplate.getForObject(url, String.class);
-		LOGGER.info("Response from {}: {}", url, response);
+//		RestTemplate restTemplate = new RestTemplate();
+//
+//		restTemplate.getInterceptors().add(new RestTemplateFilter());
+//
+//		String url = "http://localhost:8080/hello";
+//		String response = restTemplate.getForObject(url, String.class);
+//		LOGGER.info("Response from {}: {}", url, response);
 
 	}
 	@Bean

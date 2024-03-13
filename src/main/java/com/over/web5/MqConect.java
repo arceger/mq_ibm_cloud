@@ -26,7 +26,7 @@ import com.over.web5.xml.UpdateFIELD;
 
 public class MqConect {
   private static final Logger LOGGER = LoggerFactory.getLogger(Web5Application.class);
-    String recMsg="";
+    String recMsg="teste mensagem";
 
     public String getRecMsg() {
         return recMsg;
@@ -40,32 +40,8 @@ public class MqConect {
 
     // MQ cloud ibm
 
-    private String hostname;
-    private String channel ;
-    private String qmgr;
-    private int port;
-    private String user;
-    private String password;
-    private String queue;
-    private String hasAuth;
 
-    public MqConect(){
-        hostname = System.getenv("mq_host");
-        channel = System.getenv("mq_channel");
-        qmgr = System.getenv("mq_queue_manager");
-        port = Integer.parseInt(System.getenv("mq_port"));
-        hasAuth = System.getenv("has_auth");
-
-        if (hasAuth.equals("true")){
-            User mq_user  = SecretManagerUtil.getCredentials(System.getenv("mq_user"));
-            user = mq_user.getUsername();
-            password = mq_user.getPassword();
-        };
-        queue = System.getenv("mq_receive_queue");
-    }
-
-
-    public void postAndReceive() throws SAXException, IOException, ParserConfigurationException, JAXBException, MQException{
+    public void postAndReceive() throws JAXBException {
 
         JMSContext context = null;
         Destination destination = null;
@@ -79,24 +55,25 @@ public class MqConect {
             JmsConnectionFactory cf = ff.createConnectionFactory();
 
             // Set the properties
-            cf.setStringProperty(WMQConstants.WMQ_HOST_NAME, hostname);
-            cf.setIntProperty(WMQConstants.WMQ_PORT, port);
-            cf.setStringProperty(WMQConstants.WMQ_CHANNEL, channel);
+            cf.setStringProperty(WMQConstants.WMQ_HOST_NAME, "ger-1-486b.qm.us-south.mq.appdomain.cloud");
+            cf.setIntProperty(WMQConstants.WMQ_PORT,31845);
+            cf.setStringProperty(WMQConstants.WMQ_CHANNEL,"MQ.QS.SVRCONN");
             cf.setIntProperty(WMQConstants.WMQ_CONNECTION_MODE, WMQConstants.WMQ_CM_CLIENT);
-            cf.setStringProperty(WMQConstants.WMQ_QUEUE_MANAGER, qmgr);
+            cf.setStringProperty(WMQConstants.WMQ_QUEUE_MANAGER,"GER.1");
             cf.setStringProperty(WMQConstants.WMQ_APPLICATIONNAME, "Java Put/Get");
-            if (hasAuth.equals("true")){
-                cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, true);
-                cf.setStringProperty(WMQConstants.USERID, user);
-                cf.setStringProperty(WMQConstants.PASSWORD, password);
-            }else{
-                cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, false);
-            }
-            //cf.setStringProperty(WMQConstants.WMQ_SSL_CIPHER_SUITE, ""); //TLS_RSA_WITH_AES_256_CBC_SHA256
+            cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, true);
+            cf.setStringProperty(WMQConstants.USERID,"usertest");
+            cf.setStringProperty(WMQConstants.PASSWORD,"lk_zh-kRVKaxOnVnyODcznUteJXt6xwmB2_kUv2qYO-z");
+
+            cf.setStringProperty(WMQConstants.WMQ_SSL_CIPHER_SUITE, "TLS_RSA_WITH_AES_256_CBC_SHA256"); //TLS_RSA_WITH_AES_256_CBC_SHA256
 
             // Create JMS objects
             context = cf.createContext();
-            destination = context.createQueue(queue);
+            destination = context.createQueue("DEV.QUEUE.1");
+
+            //MQ.QUICKSTART.SVRCONN
+            //user1
+            //DEV.QUEUE.1
 
 
             // RECEIVE MESSAGE
