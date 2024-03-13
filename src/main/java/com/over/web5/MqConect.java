@@ -63,7 +63,7 @@ public class MqConect {
             cf.setStringProperty(WMQConstants.WMQ_APPLICATIONNAME, "Java Put/Get");
             cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, true);
             cf.setStringProperty(WMQConstants.USERID,"usertest");
-            cf.setStringProperty(WMQConstants.PASSWORD,"lk_zh-kRVKaxOnVnyODcznUteJXt6xwmB2_kUv2qYO-z");
+            cf.setStringProperty(WMQConstants.PASSWORD,"");
 
             cf.setStringProperty(WMQConstants.WMQ_SSL_CIPHER_SUITE, "TLS_RSA_WITH_AES_256_CBC_SHA256"); //TLS_RSA_WITH_AES_256_CBC_SHA256
 

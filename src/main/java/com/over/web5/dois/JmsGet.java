@@ -18,18 +18,7 @@ public class JmsGet {
     private static final Level LOGLEVEL = Level.ALL;
     private static final Logger logger = Logger.getLogger("com.ibm.mq.samples.jms");
 
-//    // Create variables for the connection to MQ
-//    private static String HOST = "ger-1-486b.qm.us-south.mq.appdomain.cloud";
-//    private static int PORT = 32637;
-//    private static String CHANNEL = "MQ.QS.SVRCONN";
-//    private static String QMGR = "GER.1";
-//    private static String APP_USER = "usertest";
-//    private static String APP_PASSWORD = "lk_zh-kRVKaxOnVnyODcznUteJXt6xwmB2_kUv2qYO-z";
-//    private static String APP_NAME = "java jms";
-//    private static String QUEUE_NAME = "DEV.QUEUE.1";
-//    private static String CIPHER_SUITE;
-//    private static String CCDTURL;
-//    private static Boolean BINDINGS = false;
+
 
         // Create variables for the connection to MQ
     private static String HOST;
